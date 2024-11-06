@@ -20,7 +20,7 @@ public class Proyecto_Grupo1 {
         String opcion = "";
         String opcionMenuQuickPass = "";
         do{
-            opcion = JOptionPane.showInputDialog("***Bienvenido***\n1) Gestion de QuickPass\n2) Opcion B\n3) Reporte\n4) Salir");
+            opcion = JOptionPane.showInputDialog("***Bienvenido***\n1) Gestion de QuickPass\n2) Gestion de Accesos\n3) Reporte\n4) Salir");
             switch (opcion) {
                 case "1":
                     do {
