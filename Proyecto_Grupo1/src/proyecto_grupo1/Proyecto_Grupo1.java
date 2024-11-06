@@ -20,24 +20,30 @@ public class Proyecto_Grupo1 {
         String opcion = "";
         String opcionMenuQuickPass = "";
         do{
-            opcion = JOptionPane.showInputDialog("***Bienvenido***\n1) Opcion A\n2) Opcion B\n3) Salir");
-            
+            opcion = JOptionPane.showInputDialog("***Bienvenido***\n1) Gestion de QuickPass\n2) Opcion B\n3) Salir");
             switch (opcion) {
                 case "1":
-                    opcionMenuQuickPass = JOptionPane.showInputDialog("***Gestion de Quick Pass***\n1) Crear\n2) Opcion B\n3) Salir");
                     do {
+                        opcionMenuQuickPass = JOptionPane.showInputDialog("***Gestion de Quick Pass***\n1) Crear\n2) Opcion B\n3) Salir");
                         switch (opcionMenuQuickPass) {
                             case "1":
-                                Quickpass q1 = new Quickpass();
+                                Quickpass q1 = new Quickpass("1011234567");
+                                Quickpass q2 = new Quickpass("1021234567");
                                 
-                                q1.setCodigo("1011234567");
                                 System.out.println(q1);
+                                System.out.println(q2);
                                 break;
+                                
+                            case "2":
+                                break;
+                                
+                            case "3":
+                                break;
+                                
                             default:
-                                JOptionPane.showMessageDialog(null, "Opcion incorrecta, intente de nuevo", "Error",JOptionPane.ERROR_MESSAGE);
+                                JOptionPane.showMessageDialog(null, "Opcion incorrecta, intente de nuevo", "Error",JOptionPane.ERROR_MESSAGE);                             
                         }
                     } while (!opcionMenuQuickPass.equals("3"));
-                    
                     break;
                     
                 case "2":

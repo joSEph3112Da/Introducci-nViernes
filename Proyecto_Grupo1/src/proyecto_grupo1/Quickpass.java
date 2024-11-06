@@ -17,8 +17,16 @@ public class Quickpass {
     Estado estado;
     
     
-    public Quickpass(){
+    public Quickpass(String pCodigo){
         this.estado = Estado.Activo;
+        int codigoValida = setCodigo(pCodigo);
+        
+        if ( codigoValida != -2 && codigoValida != -1) {
+            this.codigo = codigoValida; 
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "El Código: "+ pCodigo +" es inválido", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     public int setCodigo(String pCodigo) {
@@ -28,13 +36,11 @@ public class Quickpass {
                 return Integer.parseInt(pCodigo);
             }
             else{
-                JOptionPane.showMessageDialog(null, "El código debe comenzar con 101","Error",JOptionPane.ERROR_MESSAGE);
                 return -2;
             }
-            
+
         }
         else{
-            JOptionPane.showMessageDialog(null, "El código debe tener 10 dígitos","Error",JOptionPane.ERROR_MESSAGE);
             return -1;
         }
            
