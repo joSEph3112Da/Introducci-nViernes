@@ -34,7 +34,6 @@ public class Proyecto_Grupo1 {
                                     JOptionPane.showMessageDialog(null, 
                                             "El código es: "+ q1.codigo +" es correcto", "Registro" , JOptionPane.INFORMATION_MESSAGE);
                                 }
-                                
                                 break;
                                 
                             case "2":
@@ -81,11 +80,7 @@ public class Proyecto_Grupo1 {
                     JOptionPane.showMessageDialog(null, "Opcion incorrecta, intente de nuevo"
                             , "Error",JOptionPane.ERROR_MESSAGE);
             }//Switch Menu Principal
-            
         }
         while(!opcion.equals("4")); //Final Do While Menu Principal
-
-        
-    }
-    
+    }  
 }

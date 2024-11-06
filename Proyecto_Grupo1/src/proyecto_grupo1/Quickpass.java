@@ -16,9 +16,8 @@ public class Quickpass {//Atributos
     int placa;
     Estado estado;
     
-    
     public Quickpass(String pCodigo){ //Constructor
-        this.estado = Estado.Activo;      
+        this.estado = Estado.Activo; //Default Estado    
         int codigoValida = setCodigo(pCodigo); //Valida Codigo
         
         if ( codigoValida != -2 && codigoValida != -1) {
@@ -28,7 +27,7 @@ public class Quickpass {//Atributos
             JOptionPane.showMessageDialog(null, "El Código: "+ pCodigo +" es inválido", "Error", JOptionPane.ERROR_MESSAGE);
         }
         
-        System.out.println(this.toString());
+        System.out.println(this.toString()); //ToString
     }
 
     public int setCodigo(String pCodigo) { //Setea el Codigo validado de 10 digitos y que comience con 101
