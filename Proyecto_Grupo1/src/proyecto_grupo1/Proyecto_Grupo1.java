@@ -18,13 +18,26 @@ public class Proyecto_Grupo1 {
     public static void main(String[] args) {
         // TODO code application logic here
         String opcion = "";
-        
+        String opcionMenuQuickPass = "";
         do{
             opcion = JOptionPane.showInputDialog("***Bienvenido***\n1) Opcion A\n2) Opcion B\n3) Salir");
             
             switch (opcion) {
                 case "1":
-                    JOptionPane.showMessageDialog(null, "Gestion de Quickpass");
+                    opcionMenuQuickPass = JOptionPane.showInputDialog("***Gestion de Quick Pass***\n1) Crear\n2) Opcion B\n3) Salir");
+                    do {
+                        switch (opcionMenuQuickPass) {
+                            case "1":
+                                Quickpass q1 = new Quickpass();
+                                
+                                q1.setCodigo("1011234567");
+                                System.out.println(q1);
+                                break;
+                            default:
+                                JOptionPane.showMessageDialog(null, "Opcion incorrecta, intente de nuevo", "Error",JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (!opcionMenuQuickPass.equals("3"));
+                    
                     break;
                     
                 case "2":

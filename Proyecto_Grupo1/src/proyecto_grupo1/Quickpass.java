@@ -17,10 +17,7 @@ public class Quickpass {
     Estado estado;
     
     
-    public Quickpass(String pFilial, String pCodigo,int pPlaca){
-        this.filial = pFilial;
-        this.codigo = setCodigo(pCodigo);
-        this.placa = pPlaca;
+    public Quickpass(){
         this.estado = Estado.Activo;
     }
 
