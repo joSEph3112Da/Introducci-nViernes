@@ -4,6 +4,8 @@
  */
 package proyecto_grupo1;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Joseph
@@ -15,6 +17,33 @@ public class Proyecto_Grupo1 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        String opcion = "";
+        
+        do{
+            opcion = JOptionPane.showInputDialog("***Bienvenido***\n1) Opcion A\n2) Opcion B\n3) Salir");
+            
+            switch (opcion) {
+                case "1":
+                    JOptionPane.showMessageDialog(null, "Gestion de Quickpass");
+                    break;
+                    
+                case "2":
+                    JOptionPane.showMessageDialog(null, "Gestion de Accesos");
+                    
+                    break;
+                    
+                case "3":
+                    JOptionPane.showMessageDialog(null, "Reportes");
+                    break;
+                    
+                default:
+                    JOptionPane.showMessageDialog(null, "Opcion incorrecta, intente de nuevo", "Error",JOptionPane.ERROR_MESSAGE);
+            }
+            
+        }
+        while(!opcion.equals("3"));
+
+        
     }
     
 }
