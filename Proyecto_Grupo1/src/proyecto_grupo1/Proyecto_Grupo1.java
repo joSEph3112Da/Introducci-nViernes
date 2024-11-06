@@ -24,42 +24,47 @@ public class Proyecto_Grupo1 {
             switch (opcion) {
                 case "1":
                     do {
-                        opcionMenuQuickPass = JOptionPane.showInputDialog("***Gestion de Quick Pass***\n1) Crear\n2) Opcion B\n3) Salir");
+                        opcionMenuQuickPass = JOptionPane.showInputDialog("***Gestion de QuickPass***\n1) Crear\n2) Consulta\n3) Salir");
                         switch (opcionMenuQuickPass) {
                             case "1":
-                                Quickpass q1 = new Quickpass("1011234567");
-                                Quickpass q2 = new Quickpass("1021234567");
+                                String codigo_Quick = JOptionPane.showInputDialog("Digite el código del Quickpass (101XXXXXXX): ");                             
+                                Quickpass q1 = new Quickpass(codigo_Quick);
                                 
-                                System.out.println(q1);
-                                System.out.println(q2);
+                                if (q1.codigo != 0){
+                                    JOptionPane.showMessageDialog(null, 
+                                            "El código es: "+ q1.codigo +" es correcto", "Registro" , JOptionPane.INFORMATION_MESSAGE);
+                                }
+                                
                                 break;
                                 
                             case "2":
+                                JOptionPane.showMessageDialog(null, "Consultas (En desarrollo)");
                                 break;
                                 
                             case "3":
+                                JOptionPane.showMessageDialog(null, "Saliendo del Gestion de QuickPass");
                                 break;
                                 
-                            case null:
+                            case null: //Caso Cancel
                                 JOptionPane.showMessageDialog(null, "Opcion incorrecta, intente de nuevo", 
                                         "Error",JOptionPane.ERROR_MESSAGE);
                                 opcionMenuQuickPass = "";
                                 break;
                                 
                             default:
-                                JOptionPane.showMessageDialog(null, "Opcion incorrecta, intente de nuevo", "Error",JOptionPane.ERROR_MESSAGE);                             
+                                JOptionPane.showMessageDialog(null, "Opcion incorrecta, intente de nuevo"
+                                        , "Error",JOptionPane.ERROR_MESSAGE);                             
                         }//Switch Menu Gestion
                         
                     } while (!opcionMenuQuickPass.equals("3")); //Final Do While Gestion
                     break;
                     
                 case "2":
-                    JOptionPane.showMessageDialog(null, "Gestion de Accesos");
-                    
+                    JOptionPane.showMessageDialog(null, "Gestion de Accesos (En Desarrollo)");
                     break;
                     
                 case "3":
-                    JOptionPane.showMessageDialog(null, "Reportes");
+                    JOptionPane.showMessageDialog(null, "Reportes (En Desarrollo)");
                     break;
                     
                 case "4":
@@ -67,12 +72,14 @@ public class Proyecto_Grupo1 {
                     break;
                     
                 case null:
-                    JOptionPane.showMessageDialog(null, "Opcion incorrecta, intente de nuevo", "Error",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Opcion incorrecta, intente de nuevo"
+                            , "Error",JOptionPane.ERROR_MESSAGE);
                     opcion = "";
                     break;
                     
                 default:
-                    JOptionPane.showMessageDialog(null, "Opcion incorrecta, intente de nuevo", "Error",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Opcion incorrecta, intente de nuevo"
+                            , "Error",JOptionPane.ERROR_MESSAGE);
             }//Switch Menu Principal
             
         }
