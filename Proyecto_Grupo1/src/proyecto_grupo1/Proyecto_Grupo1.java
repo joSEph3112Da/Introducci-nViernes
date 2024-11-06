@@ -8,7 +8,8 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Joseph
+ * @author Joseph Daniel Alvarado Gómez, Brayan Ruiz Valverde
+ * Jeancarlo Loria Brenes, Marco Antonio Alvarez Mejia
  */
 public class Proyecto_Grupo1 {
 
