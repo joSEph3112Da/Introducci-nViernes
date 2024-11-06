@@ -20,7 +20,7 @@ public class Proyecto_Grupo1 {
         String opcion = "";
         String opcionMenuQuickPass = "";
         do{
-            opcion = JOptionPane.showInputDialog("***Bienvenido***\n1) Gestion de QuickPass\n2) Opcion B\n3) Salir");
+            opcion = JOptionPane.showInputDialog("***Bienvenido***\n1) Gestion de QuickPass\n2) Opcion B\n3) Reporte\n4) Salir");
             switch (opcion) {
                 case "1":
                     do {
@@ -40,10 +40,17 @@ public class Proyecto_Grupo1 {
                             case "3":
                                 break;
                                 
+                            case null:
+                                JOptionPane.showMessageDialog(null, "Opcion incorrecta, intente de nuevo", 
+                                        "Error",JOptionPane.ERROR_MESSAGE);
+                                opcionMenuQuickPass = "";
+                                break;
+                                
                             default:
                                 JOptionPane.showMessageDialog(null, "Opcion incorrecta, intente de nuevo", "Error",JOptionPane.ERROR_MESSAGE);                             
-                        }
-                    } while (!opcionMenuQuickPass.equals("3"));
+                        }//Switch Menu Gestion
+                        
+                    } while (!opcionMenuQuickPass.equals("3")); //Final Do While Gestion
                     break;
                     
                 case "2":
@@ -55,12 +62,21 @@ public class Proyecto_Grupo1 {
                     JOptionPane.showMessageDialog(null, "Reportes");
                     break;
                     
+                case "4":
+                    JOptionPane.showMessageDialog(null, "¡Hasta Luego!");
+                    break;
+                    
+                case null:
+                    JOptionPane.showMessageDialog(null, "Opcion incorrecta, intente de nuevo", "Error",JOptionPane.ERROR_MESSAGE);
+                    opcion = "";
+                    break;
+                    
                 default:
                     JOptionPane.showMessageDialog(null, "Opcion incorrecta, intente de nuevo", "Error",JOptionPane.ERROR_MESSAGE);
-            }
+            }//Switch Menu Principal
             
         }
-        while(!opcion.equals("3"));
+        while(!opcion.equals("4")); //Final Do While Menu Principal
 
         
     }
