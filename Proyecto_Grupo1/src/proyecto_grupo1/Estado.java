@@ -6,7 +6,8 @@ package proyecto_grupo1;
 
 /**
  *
- * @author Joseph
+ * @author Joseph Daniel Alvarado Gómez, Brayan Ruiz Valverde
+ * Jeancarlo Loria Brenes, Marco Antonio Alvarez Mejia
  */
 public enum Estado {
     Activo, Inactivo;
