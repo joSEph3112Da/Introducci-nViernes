@@ -32,9 +32,11 @@ public class Proyecto_Grupo1 {
                                 String codigo_Quick = JOptionPane.showInputDialog("Digite el código del Quickpass (101XXXXXXX): ");                             
                                 Quickpass q1 = new Quickpass(codigo_Quick);
                                 
-                                if (q1.codigo != 0){
+                                int codigo = q1.getCodigo();
+                                
+                                if (codigo != 0){
                                     JOptionPane.showMessageDialog(null, 
-                                            "El código es: "+ q1.codigo +" es correcto", "Registro" , JOptionPane.INFORMATION_MESSAGE);
+                                            "El código es: "+ codigo +" es correcto", "Registro" , JOptionPane.INFORMATION_MESSAGE);
                                     
                                     //Obtener la fecha actual
                                     Date fechaActual = new Date();

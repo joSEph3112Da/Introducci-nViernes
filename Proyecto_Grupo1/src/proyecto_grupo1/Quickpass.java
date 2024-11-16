@@ -12,10 +12,10 @@ import javax.swing.JOptionPane;
  * Jeancarlo Loria Brenes, Marco Antonio Alvarez Mejia
  */
 public class Quickpass {//Atributos
-    String filial;
-    int codigo;
-    int placa;
-    Estado estado;
+    private String filial;
+    private int codigo;
+    private int placa;
+    private Estado estado;
     
     public Quickpass(String pCodigo){ //Constructor
         this.estado = Estado.Activo; //Default Estado    
@@ -47,8 +47,12 @@ public class Quickpass {//Atributos
         }
            
     }
-    
 
+    public int getCodigo() {
+        return codigo;
+    }
+    
+    
     @Override
     public String toString() { //toString
         return "Quickpass [filial=" + filial + ", codigo=" + codigo + ", placa=" + placa + ", estado=" + estado + "]";
