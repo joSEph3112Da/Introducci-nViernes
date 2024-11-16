@@ -4,6 +4,7 @@
  */
 package proyecto_grupo1;
 
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -34,6 +35,10 @@ public class Proyecto_Grupo1 {
                                 if (q1.codigo != 0){
                                     JOptionPane.showMessageDialog(null, 
                                             "El código es: "+ q1.codigo +" es correcto", "Registro" , JOptionPane.INFORMATION_MESSAGE);
+                                    
+                                    //Obtener la fecha actual
+                                    Date fechaActual = new Date();
+                                    System.out.println("Fecha actual: " + fechaActual);
                                 }
                                 break;
                                 
