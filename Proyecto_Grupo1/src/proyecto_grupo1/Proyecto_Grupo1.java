@@ -39,6 +39,7 @@ public class Proyecto_Grupo1 {
                                 q1.setCodigo(codigo_Quick);
 
                                 int codigo_Def = q1.getCodigo(); //Valor actual en codigo para ver si el usuario lo digito bien
+                                
                                 while (codigo_Def == -1 || codigo_Def == -2) { //ciclo para que lo repita hasta que esté bien
                                     codigo_Quick = JOptionPane.showInputDialog("Digite el código del Quickpass (101XXXXXXX): ");
                                     q1.setCodigo(codigo_Quick);
