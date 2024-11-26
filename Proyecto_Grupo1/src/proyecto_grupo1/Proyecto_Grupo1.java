@@ -18,53 +18,49 @@ public class Proyecto_Grupo1 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        String opcion = "";
-        String opcionMenuQuickPass = "";
-        ArchivosTxt arc = new ArchivosTxt();
-
+        metodosValidacion valida = new metodosValidacion(); //Metodos para validaciones
+        ArchivosTxt arc = new ArchivosTxt(); // Metodos de TXT
+        String opcion = ""; //Variable de Menu Inicial
+        String opcionMenuQuickPass = ""; //Variable menu Quickpass
+       
+        ArregloQuickpass qPass = new ArregloQuickpass(5); //Arreglo de Quickpass
+        
         do {
             opcion = JOptionPane.showInputDialog("***Bienvenido***\n1) Gestion de QuickPass\n2) Gestion de Accesos\n3) Reporte\n4) Salir");
             switch (opcion) {
                 case "1":
                     do {
-                        opcionMenuQuickPass = JOptionPane.showInputDialog("***Gestion de QuickPass***\n1) Crear\n2) Consulta\n3) Salir");
+                        opcionMenuQuickPass = JOptionPane.showInputDialog("***Gestion de QuickPass***\n1) Crear Quickpass\n2) Consultar por código\n3) Bloquear Quickpass\n4) Eliminar Quickpass\n5) Salir");
+                        
                         switch (opcionMenuQuickPass) {
                             case "1":
-                                Quickpass q1 = new Quickpass(); //Crea objeto default
-                                String filial_Quick = JOptionPane.showInputDialog("Digite la filial: ");
-                                q1.setFilial(filial_Quick);
-                                String filial_Def = q1.getFilial();
-
-                                String codigo_Quick = JOptionPane.showInputDialog("Digite el código del Quickpass (101XXXXXXX): ");
-                                q1.setCodigo(codigo_Quick);
-
-                                int codigo_Def = q1.getCodigo(); //Valor actual en codigo para ver si el usuario lo digito bien
                                 
-                                while (codigo_Def == -1 || codigo_Def == -2) { //ciclo para que lo repita hasta que esté bien
-                                    codigo_Quick = JOptionPane.showInputDialog("Digite el código del Quickpass (101XXXXXXX): ");
-                                    q1.setCodigo(codigo_Quick);
-                                    codigo_Def = q1.getCodigo();
-                                }
-
-                                int placa_Quick = Integer.parseInt(JOptionPane.showInputDialog("Digite la placa: "));
-                                q1.setPlaca(placa_Quick);
-                                int Placa_Def = q1.getPlaca();
-
-                                Enum Estado_Def = q1.getEstado();
-
-                                System.out.println(q1.toString()); //Verificar objeto creado
+                                String filial_nuevo = valida.valNoVacio("filial");
+                                int codigo_Nuevo =  valida.validaCodigo();
+                                int placa_nuevo = valida.valmayor0("placa");
                                 
-                                LocalDateTime tiempo = LocalDateTime.now();
+                                Quickpass quickpass_Nuevo = new Quickpass(filial_nuevo, codigo_Nuevo, placa_nuevo);
+                                qPass.agregarQuickpass(quickpass_Nuevo);
                                 
-                                arc.escribir_TXT(filial_Def + "|" + codigo_Def + "|" + Placa_Def + "|" + Estado_Def + "|" + tiempo);
                                 break;
 
                             case "2":
-                                JOptionPane.showMessageDialog(null, "Consultas (En desarrollo)");
+                                JOptionPane.showMessageDialog(null, qPass);
+                                //JOptionPane.showMessageDialog(null, "***Consulta por Código***");
+                                LocalDateTime tiempo = LocalDateTime.now();
+                                
+                                break;
+                                
+                            case "3":
+                                JOptionPane.showMessageDialog(null, "***Bloquar Código***");
+                                break;
+                                
+                            case "4":
+                                JOptionPane.showMessageDialog(null, "***Eliminar Quickpass***");
                                 break;
 
-                            case "3":
-                                JOptionPane.showMessageDialog(null, "Saliendo del Gestion de QuickPass");
+                            case "5":
+                                JOptionPane.showMessageDialog(null, "¡Saliendo de Gestion de Quickpass!");
                                 break;
 
                             case null: //Caso Cancel
@@ -78,12 +74,12 @@ public class Proyecto_Grupo1 {
                                         "Error", JOptionPane.ERROR_MESSAGE);
                         }//Switch Menu Gestion
 
-                    } while (!opcionMenuQuickPass.equals("3")); //Final Do While Gestion
+                    } while (!opcionMenuQuickPass.equals("5")); //Final Do While Gestion
                     break;
 
                 case "2":
-                    String lectura = arc.leer_TXT();
-                    JOptionPane.showMessageDialog(null, "En el txt se encuentra: " + lectura);
+//                    String lectura = arc.leer_TXT(); **Prueba**
+//                    JOptionPane.showMessageDialog(null, "En el txt se encuentra: " + lectura); **Prueba**
                     JOptionPane.showMessageDialog(null, "Gestion de Accesos (En Desarrollo)");
                     break;
 
