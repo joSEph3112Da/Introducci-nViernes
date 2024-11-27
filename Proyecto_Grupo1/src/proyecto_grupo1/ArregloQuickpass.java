@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
  * Brenes, Marco Antonio Alvarez Mejia
  */
 public class ArregloQuickpass {
+
     private Quickpass listQuickpass[];
     private int cupo;
 
@@ -19,34 +20,74 @@ public class ArregloQuickpass {
         listQuickpass = new Quickpass[tamanno];
         cupo = tamanno;
     }
-    
-    public void agregarQuickpass(Quickpass pQuickNew){
-        if (cupo == 0) {
-            JOptionPane.showMessageDialog(null, "No queda más espacio para quickpass", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-        else{
-            for (int i = 0; i < listQuickpass.length; i++) {
-                if (listQuickpass[i] == null) {
-                    listQuickpass[i]= pQuickNew;
-                    cupo --;
-                    JOptionPane.showMessageDialog(null, "El quickpass fue creado correctamente");
-                    break;
-                }
 
+    public void agregarQuickpass(Quickpass pQuickNew) {
+
+        for (int i = 0; i < listQuickpass.length; i++) {
+            if (listQuickpass[i] == null) {
+                listQuickpass[i] = pQuickNew;
+                cupo--;
+
+                break;
+            }
+
+        }
+
+    }
+
+    public int getCupo() {
+        return cupo;
+    }
+
+    public Quickpass eliminarQuick_Codigo(int codigo_Elimina) {
+        Quickpass r = null;
+        
+        for (int i = 0; i < listQuickpass.length; i++) {
+            if (listQuickpass[i] != null &&listQuickpass[i].getCodigo() == codigo_Elimina) {
+                r = listQuickpass[i];
+                listQuickpass[i] = null;
+                cupo++;
+                JOptionPane.showMessageDialog(null, "El Quickpass ha sido eliminado correctamente");
+                break;
             }
         }
+        
+        if (r == null) {
+            JOptionPane.showMessageDialog(null, "Codigo no encontrado" , "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        return r;
 
     }
-   
+    
+    public Quickpass eliminarQuick_Placa(int placa_Elimina) {
+        Quickpass r = null;
+        
+        for (int i = 0; i < listQuickpass.length; i++) {
+            if (listQuickpass[i] != null &&listQuickpass[i].getPlaca() == placa_Elimina) {
+                r = listQuickpass[i];
+                listQuickpass[i] = null;
+                cupo++;
+                JOptionPane.showMessageDialog(null, "El Quickpass ha sido eliminado correctamente");
+                break;
+            }
+        }
+        
+        if (r == null) {
+            JOptionPane.showMessageDialog(null, "Placa no encontrada" , "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        return r;
+
+    }
+
     @Override
     public String toString() {
-       String mensaje = "***Quickpass Creados***\n";
-       for(int x=0;x<listQuickpass.length;x++){
-           mensaje+=(x+1)+") "+listQuickpass[x]+"\n";
-       }
-       return  mensaje;
-       
+        String mensaje = "\n";
+        for (int x = 0; x < listQuickpass.length; x++) {
+            mensaje += (x + 1) + ") " + listQuickpass[x] + "\n";
+        }
+        return mensaje;
+
     }
-    
-    
 }
