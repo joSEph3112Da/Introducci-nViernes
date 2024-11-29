@@ -41,9 +41,9 @@ public class ArregloQuickpass {
 
     public Quickpass eliminarQuick_Codigo(int codigo_Elimina) {
         Quickpass r = null;
-        
+
         for (int i = 0; i < listQuickpass.length; i++) {
-            if (listQuickpass[i] != null &&listQuickpass[i].getCodigo() == codigo_Elimina) {
+            if (listQuickpass[i] != null && listQuickpass[i].getCodigo() == codigo_Elimina) {
                 r = listQuickpass[i];
                 listQuickpass[i] = null;
                 cupo++;
@@ -51,20 +51,20 @@ public class ArregloQuickpass {
                 break;
             }
         }
-        
+
         if (r == null) {
-            JOptionPane.showMessageDialog(null, "Codigo no encontrado" , "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Codigo no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        
+
         return r;
 
     }
-    
+
     public Quickpass eliminarQuick_Placa(int placa_Elimina) {
         Quickpass r = null;
-        
+
         for (int i = 0; i < listQuickpass.length; i++) {
-            if (listQuickpass[i] != null &&listQuickpass[i].getPlaca() == placa_Elimina) {
+            if (listQuickpass[i] != null && listQuickpass[i].getPlaca() == placa_Elimina) {
                 r = listQuickpass[i];
                 listQuickpass[i] = null;
                 cupo++;
@@ -72,12 +72,73 @@ public class ArregloQuickpass {
                 break;
             }
         }
-        
+
         if (r == null) {
-            JOptionPane.showMessageDialog(null, "Placa no encontrada" , "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Placa no encontrada", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        
+
         return r;
+
+    }
+
+    public Quickpass desactivar_Codigo(int codigo_Desactiva) {
+        Quickpass r = null;
+
+        for (int i = 0; i < listQuickpass.length; i++) {
+            if (listQuickpass[i] != null && listQuickpass[i].getCodigo() == codigo_Desactiva) {
+                if (listQuickpass[i].getEstado() == Estado.Inactivo) {
+                    JOptionPane.showMessageDialog(null, "El Quickpass ya se encuentra desactivado", "Error", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    r = listQuickpass[i];
+                    listQuickpass[i].setEstado(Estado.Inactivo);
+                    JOptionPane.showMessageDialog(null, "El Quickpass ha sido desactivado correctamente");
+                    break;
+                }
+            }
+        }
+
+        if (r == null) {
+            JOptionPane.showMessageDialog(null, "Codigo no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        return r;
+
+    }
+
+    public Quickpass activar_Codigo(int codigo_Activa) {
+        Quickpass r = null;
+
+        for (int i = 0; i < listQuickpass.length; i++) {
+            if (listQuickpass[i] != null && listQuickpass[i].getCodigo() == codigo_Activa) {
+                if (listQuickpass[i].getEstado() == Estado.Activo) {
+                    JOptionPane.showMessageDialog(null, "El Quickpass ya se encuentra activado", "Error", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    r = listQuickpass[i];
+                    listQuickpass[i].setEstado(Estado.Activo);
+                    JOptionPane.showMessageDialog(null, "El Quickpass ha sido activado correctamente");
+                    break;
+                }
+            }
+        }
+
+        if (r == null) {
+            JOptionPane.showMessageDialog(null, "Codigo no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        return r;
+
+    }
+
+    public String mostrarActivosoInactivos(String parametro) {
+        String mensaje = "\n";
+       
+        for (int i = 0; i < listQuickpass.length; i++) {
+            if (listQuickpass[i] != null && listQuickpass[i].getEstado() == Estado.valueOf(parametro)) {
+                mensaje += (i + 1) + ") " + listQuickpass[i] + "\n";
+            }
+        }
+
+        return mensaje;
 
     }
 
