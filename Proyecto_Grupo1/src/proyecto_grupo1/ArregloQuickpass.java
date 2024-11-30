@@ -154,7 +154,7 @@ public class ArregloQuickpass {
     }
     
     public void mostrarporBusqueda() {
-        String mensaje = "\n";
+        
         String p_Busqueda = "";
         String filial_Busqueda;
         String estado_Busqueda;
@@ -162,7 +162,7 @@ public class ArregloQuickpass {
         int placa_Busqueda;
         do {
             p_Busqueda =JOptionPane.showInputDialog("***Menu Mostrar por Busqueda***\n1) Por Filial\n2) Por Codigo\n3) Por Placa\n4) Por Estado\n5) Salir");
-            
+            String mensaje = "\n";
             if (p_Busqueda == null) {
                 JOptionPane.showMessageDialog(null, "¡Saliendo de Gestion de Quickpass!");
                 break;
@@ -172,10 +172,11 @@ public class ArregloQuickpass {
                 case "1":
                     filial_Busqueda=JOptionPane.showInputDialog("***Menu Mostrar por Filial***\nEscriba la Filial");
                     for (int i = 0; i < listQuickpass.length; i++) {
-                        if (listQuickpass[i] != null && listQuickpass[i].getFilial().equals(filial_Busqueda) ) {
+                        if (listQuickpass[i] != null && listQuickpass[i].getFilial().equals(filial_Busqueda)) {
                             mensaje += (i + 1) + ") " + listQuickpass[i] + "\n";
                         }
                     }
+                    JOptionPane.showMessageDialog(null, mensaje);
                     break;
                 case "2":
                     codigo_Busqueda=Integer.parseInt(JOptionPane.showInputDialog("***Menu Mostrar por Código***\nEscriba la Codigo"));
@@ -184,6 +185,7 @@ public class ArregloQuickpass {
                             mensaje += (i + 1) + ") " + listQuickpass[i] + "\n";
                         }
                     }
+                    JOptionPane.showMessageDialog(null, mensaje);
                     break;
                 case "3":
                     placa_Busqueda=Integer.parseInt(JOptionPane.showInputDialog("***Menu Mostrar por Placa***\nEscriba la Placa"));
@@ -192,6 +194,7 @@ public class ArregloQuickpass {
                             mensaje += (i + 1) + ") " + listQuickpass[i] + "\n";
                         }
                     }
+                    JOptionPane.showMessageDialog(null, mensaje);
                     break;
                     
                 case "4":
@@ -201,6 +204,7 @@ public class ArregloQuickpass {
                             mensaje += (i + 1) + ") " + listQuickpass[i] + "\n";
                         }
                     }
+                    JOptionPane.showMessageDialog(null, mensaje);
                     break;
                 case "5":
                     p_Busqueda="5";
@@ -211,7 +215,7 @@ public class ArregloQuickpass {
                     JOptionPane.showMessageDialog(null, "Opcion incorrecta, intente de nuevo",
                             "Error", JOptionPane.ERROR_MESSAGE);
             }
-            JOptionPane.showMessageDialog(null, mensaje);
+            
         } while (!p_Busqueda.equals("5"));
     }
     
