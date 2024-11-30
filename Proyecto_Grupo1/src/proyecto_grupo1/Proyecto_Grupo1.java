@@ -25,10 +25,11 @@ public class Proyecto_Grupo1 {
         String opcionMenuQuickPass = ""; //Variable menu Quickpass
         String opcionEliminar = ""; //Variable menu de eliminar Quickpass
         String opcionMenuVista = ""; //Variable menu de vista
-        String opcionMenuVistaNormal = "";//Variable menu de vista no eliminados
-        String opcionMenuVistaEliminados = "";//Variable menu de vista eliminados
+        String opcionMenuVistaNormal = "";  //Variable menu de vista no eliminados
+        String opcionMenuVistaEliminados = "";  //Variable menu de vista eliminados
         ArregloQuickpass qPass = new ArregloQuickpass(5); //Arreglo de Quickpass
         ArregloQuickpass quickpassEliminados = new ArregloQuickpass(15); //Arreglo de los eliminados
+        
 
         do {
             opcion = JOptionPane.showInputDialog("***Bienvenido***\n1) Gestion de QuickPass\n2) Gestion de Accesos\n3) Reporte\n4) Salir");
@@ -73,18 +74,18 @@ public class Proyecto_Grupo1 {
                                     switch (opcionMenuVista) {
                                         case "1":
                                             do {
-                                                opcionMenuVistaNormal = JOptionPane.showInputDialog("***Menu de Vista***\n1) Ver Todos\n2) Ver por Filial\n3)Busqueda Específica\n4) Salir");
+                                                opcionMenuVistaNormal = JOptionPane.showInputDialog("***Menu de Vista***\n1) Ver Todos\n2) Ver por Filial\n3) Busqueda Específica\n4) Salir");
                                                 switch (opcionMenuVistaNormal) {
                                                     case "1":
                                                         JOptionPane.showMessageDialog(null, "***Quickpass Creados***" + qPass);
                                                         break;
 
                                                     case "2":
-
+                                                        qPass.mostrarporFilial();
                                                         break;
 
                                                     case "3":
-
+                                                        qPass.mostrarporBusqueda();
                                                         break;
 
                                                     case "4":
@@ -100,7 +101,7 @@ public class Proyecto_Grupo1 {
                                             break;
                                         case "2":
                                             do {
-                                                opcionMenuVistaEliminados = JOptionPane.showInputDialog("***Menu de Vista***\n1) Ver Todos\n2) Ver por Filial\n3)Busqueda Específica\n4) Salir");
+                                                opcionMenuVistaEliminados = JOptionPane.showInputDialog("***Menu de Vista***\n1) Ver Todos\n2) Ver por Filial\n3) Busqueda Específica\n4) Salir");
 
                                                 if (opcionMenuVistaEliminados == null) {
                                                     JOptionPane.showMessageDialog(null, "¡Saliendo de Vista de Eliminados!");
@@ -113,12 +114,12 @@ public class Proyecto_Grupo1 {
                                                         break;
 
                                                     case "2":
-
+                                                        quickpassEliminados.mostrarporFilial();
                                                         break;
 
                                                     case "3":
-
-                                                        break;
+                                                        quickpassEliminados.mostrarporBusqueda();
+                                                        break;  
 
                                                     case "4":
                                                         JOptionPane.showMessageDialog(null, "¡Saliendo de Vista de Eliminados!");

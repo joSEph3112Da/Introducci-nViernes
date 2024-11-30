@@ -141,6 +141,75 @@ public class ArregloQuickpass {
         return mensaje;
 
     }
+    
+    public void mostrarporFilial() {
+        String mensaje = "\n";
+        String p_Filial =JOptionPane.showInputDialog("***Menu Mostrar por Filial***\nEscriba la Filial");
+        for (int i = 0; i < listQuickpass.length; i++) {
+            if (listQuickpass[i] != null && listQuickpass[i].getFilial().equals(p_Filial)) {
+                mensaje += (i + 1) + ") " + listQuickpass[i] + "\n";
+            }
+        }
+        JOptionPane.showMessageDialog(null, mensaje);
+    }
+    
+    public void mostrarporBusqueda() {
+        String mensaje = "\n";
+        String p_Busqueda = "";
+        do {
+            p_Busqueda =JOptionPane.showInputDialog("***Menu Mostrar por Busqueda***\n1) Por Filial\n2) Por Codigo\n3) Por Placa\n4) Por Estado\n5) Salir");
+            
+            if (p_Busqueda == null) {
+                JOptionPane.showMessageDialog(null, "¡Saliendo de Gestion de Quickpass!");
+                break;
+            }
+            
+            switch (p_Busqueda) {
+                case "1":
+                    p_Busqueda=JOptionPane.showInputDialog("***Menu Mostrar por Filial***\nEscriba la Filial");
+                    for (int i = 0; i < listQuickpass.length; i++) {
+                        if (listQuickpass[i] != null && listQuickpass[i].getFilial().equals(p_Busqueda) ) {
+                            mensaje += (i + 1) + ") " + listQuickpass[i] + "\n";
+                        }
+                    }
+                    break;
+                case "2":
+                    p_Busqueda=JOptionPane.showInputDialog("***Menu Mostrar por Código***\nEscriba la Codigo");
+                    for (int i = 0; i < listQuickpass.length; i++) {
+                        if (listQuickpass[i] != null && listQuickpass[i].getCodigo()== Integer.parseInt(p_Busqueda) ) {
+                            mensaje += (i + 1) + ") " + listQuickpass[i] + "\n";
+                        }
+                    }
+                    break;
+                case "3":
+                    p_Busqueda=JOptionPane.showInputDialog("***Menu Mostrar por Placa***\nEscriba la Placa");
+                    for (int i = 0; i < listQuickpass.length; i++) {
+                        if (listQuickpass[i] != null && listQuickpass[i].getPlaca()== Integer.parseInt(p_Busqueda) ) {
+                            mensaje += (i + 1) + ") " + listQuickpass[i] + "\n";
+                        }
+                    }
+                    break;
+                case "4":
+                    p_Busqueda=JOptionPane.showInputDialog("***Menu Mostrar por Estado***\nEscriba el Parametro");
+                    for (int i = 0; i < listQuickpass.length; i++) {
+                        if (listQuickpass[i] != null && listQuickpass[i].getEstado()== Estado.valueOf(p_Busqueda) ) {
+                            mensaje += (i + 1) + ") " + listQuickpass[i] + "\n";
+                        }
+                    }
+                    break;
+                case "5":
+                    p_Busqueda="5";
+                    JOptionPane.showMessageDialog(null, "¡Saliendo!");
+                    break;
+                
+                default:
+                    JOptionPane.showMessageDialog(null, "Opcion incorrecta, intente de nuevo",
+                            "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            JOptionPane.showMessageDialog(null, mensaje);
+        } while (p_Busqueda.equals("5"));
+    }
+    
 
     @Override
     public String toString() {
@@ -151,4 +220,7 @@ public class ArregloQuickpass {
         return mensaje;
 
     }
+    
+    
+    
 }
