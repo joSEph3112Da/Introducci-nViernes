@@ -154,12 +154,12 @@ public class ArregloQuickpass {
     }
     
     public void mostrarporBusqueda() {
-        
         String p_Busqueda = "";
         String filial_Busqueda;
         String estado_Busqueda;
         int codigo_Busqueda;
         int placa_Busqueda;
+        
         do {
             p_Busqueda =JOptionPane.showInputDialog("***Menu Mostrar por Busqueda***\n1) Por Filial\n2) Por Codigo\n3) Por Placa\n4) Por Estado\n5) Salir");
             String mensaje = "\n";
