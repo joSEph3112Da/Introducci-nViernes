@@ -131,11 +131,16 @@ public class ArregloQuickpass {
 
     public String mostrarActivosoInactivos(String parametro) {
         String mensaje = "\n";
-       
+        int contador = 0;
         for (int i = 0; i < listQuickpass.length; i++) {
             if (listQuickpass[i] != null && listQuickpass[i].getEstado() == Estado.valueOf(parametro)) {
                 mensaje += (i + 1) + ") " + listQuickpass[i] + "\n";
+                contador ++;
             }
+        }
+        
+        if (contador == 0) {
+            mensaje += "\nNo hay registros\n";
         }
 
         return mensaje;
@@ -144,12 +149,18 @@ public class ArregloQuickpass {
     
     public void mostrarporFilial() {
         String mensaje = "\n";
+        int contador = 0;
         String p_Filial =JOptionPane.showInputDialog("***Menu Mostrar por Filial***\nEscriba la Filial");
         for (int i = 0; i < listQuickpass.length; i++) {
             if (listQuickpass[i] != null && listQuickpass[i].getFilial().equals(p_Filial)) {
                 mensaje += (i + 1) + ") " + listQuickpass[i] + "\n";
             }
         }
+        
+        if (contador == 0) {
+            mensaje += "\nNo hay registros\n";
+        }
+        
         JOptionPane.showMessageDialog(null, mensaje);
     }
     
@@ -163,6 +174,8 @@ public class ArregloQuickpass {
         do {
             p_Busqueda =JOptionPane.showInputDialog("***Menu Mostrar por Busqueda***\n1) Por Filial\n2) Por Codigo\n3) Por Placa\n4) Por Estado\n5) Salir");
             String mensaje = "\n";
+            int contador = 0;
+            
             if (p_Busqueda == null) {
                 JOptionPane.showMessageDialog(null, "¡Saliendo de Gestion de Quickpass!");
                 break;
@@ -176,6 +189,9 @@ public class ArregloQuickpass {
                             mensaje += (i + 1) + ") " + listQuickpass[i] + "\n";
                         }
                     }
+                    if (contador == 0) {
+                        mensaje += "\nNo hay registros\n";
+                    }
                     JOptionPane.showMessageDialog(null, mensaje);
                     break;
                 case "2":
@@ -184,6 +200,9 @@ public class ArregloQuickpass {
                         if (listQuickpass[i] != null && listQuickpass[i].getCodigo()== codigo_Busqueda) {
                             mensaje += (i + 1) + ") " + listQuickpass[i] + "\n";
                         }
+                    }
+                    if (contador == 0) {
+                        mensaje += "\nNo hay registros\n";
                     }
                     JOptionPane.showMessageDialog(null, mensaje);
                     break;
@@ -194,6 +213,9 @@ public class ArregloQuickpass {
                             mensaje += (i + 1) + ") " + listQuickpass[i] + "\n";
                         }
                     }
+                    if (contador == 0) {
+                        mensaje += "\nNo hay registros\n";
+                    }
                     JOptionPane.showMessageDialog(null, mensaje);
                     break;
                     
@@ -203,6 +225,9 @@ public class ArregloQuickpass {
                         if (listQuickpass[i] != null && listQuickpass[i].getEstado()== Estado.valueOf(estado_Busqueda) ) {
                             mensaje += (i + 1) + ") " + listQuickpass[i] + "\n";
                         }
+                    }
+                    if (contador == 0) {
+                        mensaje += "\nNo hay registros\n";
                     }
                     JOptionPane.showMessageDialog(null, mensaje);
                     break;
