@@ -249,12 +249,16 @@ public class ArregloQuickpass {
     public String toString() {
         String mensaje = "\n";
         for (int x = 0; x < listQuickpass.length; x++) {
-            mensaje += (x + 1) + ") " + listQuickpass[x] + "\n";
+            if (listQuickpass[x] == null) {
+                mensaje += (x + 1) + ") " + "Sin registro" + "\n";
+            }
+            else{
+                mensaje += (x + 1) + ") " + listQuickpass[x] + "\n";
+            }
+            
         }
         return mensaje;
 
     }
-    
-    
-    
+
 }
