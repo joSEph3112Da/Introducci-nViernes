@@ -6,6 +6,7 @@ package proyecto_grupo1;
 
 import javax.swing.JOptionPane;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -20,16 +21,20 @@ public class Proyecto_Grupo1 {
     public static void main(String[] args) {
         // TODO code application logic here
         metodosValidacion valida = new metodosValidacion(); //Metodos para validaciones
-        ArchivosTxt arc = new ArchivosTxt(); // Metodos de TXT
         String opcion = ""; //Variable de Menu Inicial
         String opcionMenuQuickPass = ""; //Variable menu Quickpass
         String opcionEliminar = ""; //Variable menu de eliminar Quickpass
         String opcionMenuVista = ""; //Variable menu de vista
         String opcionMenuVistaNormal = "";  //Variable menu de vista no eliminados
         String opcionMenuVistaEliminados = "";  //Variable menu de vista eliminados
+        String opcionGestionAccesos= "";  //Variable menu Gestion Accesos
+        String opcionConsultaGestionAccesos= "";  
         ArregloQuickpass qPass = new ArregloQuickpass(5); //Arreglo de Quickpass
         ArregloQuickpass quickpassEliminados = new ArregloQuickpass(15); //Arreglo de los eliminados
-        
+        ArchivosTxt archivostxt = new ArchivosTxt(); // Metodo de lectura de Archivo.txt
+        HistorialTxt historialTxt = new HistorialTxt();// Metodo que hace las validaciones
+        ArchivosTxt arc = new ArchivosTxt(); //Metodos TXT
+//        arc.leerArchivos();
 
         do {
             opcion = JOptionPane.showInputDialog("***Bienvenido***\n1) Gestion de QuickPass\n2) Gestion de Accesos\n3) Reporte\n4) Salir");
@@ -201,17 +206,126 @@ public class Proyecto_Grupo1 {
                     break;
 
                 case "2":
-//                    String lectura = arc.leer_TXT(); **Prueba**
-//                    JOptionPane.showMessageDialog(null, "En el txt se encuentra: " + lectura); **Prueba**
-                    JOptionPane.showMessageDialog(null, "Gestion de Accesos (En Desarrollo)");
+                    do {
+                        opcionGestionAccesos = JOptionPane.showInputDialog("***Gestion de Accesos***\n1)Verificar acceso \n2) Realizar Consusltas\n3)  Salir");
+
+                        if (opcionGestionAccesos == null) {
+                            JOptionPane.showMessageDialog(null, "¡Saliendo de Gestion de Accesos!");
+                            break;
+                        }
+                        switch (opcionGestionAccesos) {
+                            case "1":
+                                int verificacion = valida.validaCodigo();
+                                qPass.validarAcceso(verificacion);
+                                
+                                break;
+                            case "2":
+                                do {
+                                    opcionConsultaGestionAccesos = JOptionPane.showInputDialog("***Consulta de Gestion de Accesos***\n1) Verificar con filial\n2) Verificar con Rango de Fechas\n3) Verificar con Codigo\n4) Verificar con Placa\n5) Salir");
+                                    if (opcionConsultaGestionAccesos == null) {
+                                        JOptionPane.showMessageDialog(null, "¡Saliendo de Gestion de Accesos!");
+                                        break;
+                                    }
+                                    switch (opcionConsultaGestionAccesos) {
+                                        case "1":
+                                            String opcionValidacion = JOptionPane.showInputDialog("Seleccione la filial que desea validar:");
+                                            String filialValida = historialTxt.verificarFilial(opcionValidacion);
+                                            JOptionPane.showMessageDialog(null, filialValida); 
+                                            break;
+                                        case "2":
+                                            LocalDateTime fechaInicio = LocalDateTime.parse(JOptionPane.showInputDialog("Ingrese la fecha de inicio con el formato: (dd-MM-yyyy HH:mm:ss):"), DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
+                                            LocalDateTime fechaFin = LocalDateTime.parse(JOptionPane.showInputDialog("Ingrese la fecha de fin (dd-MM-yyyy HH:mm:ss):"), DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
+                                            String fechasValidas = historialTxt.verificarRangoFechas(fechaInicio, fechaFin);
+                                            JOptionPane.showMessageDialog(null, fechasValidas);
+                                            break;
+                                        case "3":
+                                            int codigoBuscar = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el numero delcódigo:"));
+                                            String codigoEncontrado = historialTxt.verificarPorCodigo(codigoBuscar);
+                                            JOptionPane.showMessageDialog(null, codigoEncontrado);
+                                            break;
+                                        case "4":
+                                            int placaBuscar = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el numero de la placa:"));
+                                            String placaEncontrado = historialTxt.verificarPorPlaca(placaBuscar);
+                                            JOptionPane.showMessageDialog(null, placaEncontrado);
+                                            break;
+                                        case "5":
+                                            JOptionPane.showMessageDialog(null, "¡Saliendo de Consulta de Gestion de Accesos!");
+                                            break;    
+                                        default:
+                                            JOptionPane.showMessageDialog(null, "Opcion incorrecta, intente de nuevo",
+                                                    "Error", JOptionPane.ERROR_MESSAGE);
+                                    }
+                                } while (!opcionConsultaGestionAccesos.equals("3"));
+                                break;
+                            case "3":
+                                JOptionPane.showMessageDialog(null, "¡Saliendo de Gestion de Accesos!");
+                                break;
+                            default:
+                                JOptionPane.showMessageDialog(null, "Opcion incorrecta, intente de nuevo",
+                                                    "Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (!opcionGestionAccesos.equals("3"));
                     break;
 
                 case "3":
-                    JOptionPane.showMessageDialog(null, "Reportes (En Desarrollo)");
-                    break;
+                    String menuReportes;
+                    do {
+                        menuReportes = JOptionPane.showInputDialog("Menú Reportes\n"
+                            + "1) Ver Total de Quickpass registrados\n"
+                            + "2) Ver Total de Total de Quickpass Activos\n"
+                            + "3) Ver Total de Total de Quickpass Inactivos\n"
+                            + "4) Ver Total de Total de Quickpass Eliminados\n"
+                            + "5) Ver Total de Quickpass blank \n"
+                            + "6) Salir");
 
+                        if (menuReportes == null) {
+                            JOptionPane.showMessageDialog(null, "¡Saliendo de Gestion de Accesos!");
+                            break;
+                        }
+                        switch (menuReportes) {
+                            case "1":
+                                int totalRegistrados = qPass.contadorQuickPass();
+                                JOptionPane.showMessageDialog(null, "Total de Quickpass registrados: " + totalRegistrados);
+                                break;
+                                
+                            case "2":
+                                int activosCount = qPass.countByEstado(Estado.Activo);
+                                JOptionPane.showMessageDialog(null, "Total de Quickpass Activos: " + activosCount);
+                                break;
+                                
+                            case "3":
+                                int inactivosCount = qPass.countByEstado(Estado.Inactivo);
+                                JOptionPane.showMessageDialog(null, "Total de Quickpass Inactivos: " + inactivosCount);
+                                break;
+                                
+                            case "4":
+                                int eliminadosCount = quickpassEliminados.contadorQuickPass();
+                                JOptionPane.showMessageDialog(null, "Total de Quickpass Eliminados: " + eliminadosCount);
+                                break;
+                             
+                            case "5":
+                                
+                                JOptionPane.showMessageDialog(null, "Total de Quickpass Eliminados: " + historialTxt.contadorConsulta());
+                                break;
+                                
+                            case "6":
+                                JOptionPane.showMessageDialog(null, "¡Saliendo de Gestion de Reportes!");
+                                break;
+                                
+                            default:
+                                JOptionPane.showMessageDialog(null, "Opción no válida, intente de nuevo.");
+                        }
+                        
+                    }while(!menuReportes.equals("6"));
+                    
+                break;
+                
                 case "4":
                     JOptionPane.showMessageDialog(null, "¡Hasta Luego!");
+                    arc.borrarContenido_TXT("Generados.txt");
+                    qPass.guardaTXTLista("Generados.txt");
+                    arc.borrarContenido_TXT("Eliminados.txt");
+                    quickpassEliminados.guardaTXTLista("Eliminados.txt");
                     break;
 
                 default:

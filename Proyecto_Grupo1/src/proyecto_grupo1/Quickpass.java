@@ -24,6 +24,14 @@ public class Quickpass {//Atributos
         this.placa = pPlaca;
 
     }
+    
+    public Quickpass(String pFilial, int pCodigo, int pPlaca, Estado estado) { //Constructor
+        this.estado = estado; //Default Estado
+        this.codigo = pCodigo;
+        this.filial = pFilial;
+        this.placa = pPlaca;
+
+    }
 
     public void setCodigo(int pCodigo) { //Setea el Codigo validado de 10 digitos y que comience con 101
         this.codigo = pCodigo;

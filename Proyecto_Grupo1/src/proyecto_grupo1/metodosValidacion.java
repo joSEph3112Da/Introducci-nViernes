@@ -51,6 +51,24 @@ public class metodosValidacion {
         
         return r;
     }
+    
+     public String verificacionNoVacio (String parametro){
+        String r;
+        r = parametro;
+        if (r.equals("") || r == null) {
+        r = "Error en el Dato";
+        }
+        return r;
+    }
+     
+     public int verificacionNumeroNoVacio (int parametro){
+        int t;
+        t = parametro;
+        if ( t == 0) {
+        t = 0;
+        }
+        return t;
+    }
      
      public int valmayor0(String parametro){
         int r;
