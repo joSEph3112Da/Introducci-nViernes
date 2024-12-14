@@ -313,11 +313,9 @@ public class ArregloQuickpass {
                     qpassValida = listQuickpass[i];
                 }
 
-            } else {
-                qpassValida = new Quickpass("", codigoBuscado, 0);
             }
-
         }
+        
         historialTxt.Historial_TXT(estadoAcceso, qpassValida);
 
     }

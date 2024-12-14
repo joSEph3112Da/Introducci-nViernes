@@ -20,10 +20,6 @@ import java.time.format.DateTimeFormatter;
 
 
 public class ArchivosTxt {
-    private String generados = "Generados.txt";
-    private String filial, codigo, placa, pEstado;
-    private Estado estado;
-    metodosValidacion valida = new metodosValidacion();
     
     public void borrarContenido_TXT(String parametro) {
     try {
@@ -51,63 +47,32 @@ public class ArchivosTxt {
         
     }
    
-    public void leerInicio_TXT(String parametro) {
+    public void leerInicio_TXT(String parametro, ArregloQuickpass listaDestino) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(parametro));
             String linea;
             while ((linea = reader.readLine()) != null) {
-                
                 String[] datos = linea.split("\\|");
-                filial = datos[0];
-                codigo = datos[1];
-                placa = datos[2];
-                pEstado = datos[3];
-                estado = Estado.valueOf(pEstado);
-                
-                filial = valida.valNoVacio(filial);
-                int pcodigo = valida.verificacionNumeroNoVacio(Integer.parseInt(codigo));
-                codigo = ""+pcodigo;
-                int pplaca = valida.verificacionNumeroNoVacio(Integer.parseInt(placa));
-                placa=""+pplaca;
-                
-                Quickpass quickpass_Nuevo = new Quickpass(filial, Integer.parseInt(codigo), Integer.parseInt(placa),estado);  
+                String filial = datos[0];
+                String codigoStr = datos[1];
+                String placaStr = datos[2];
+                String pEstado = datos[3];
+                Estado estado = Estado.valueOf(pEstado); // Convertimos el estado de texto a tipo Estado
+
+                // Convertimos los códigos y placas a enteros
+                int codigo = Integer.parseInt(codigoStr);
+                int placa = Integer.parseInt(placaStr);
+
+                // Creamos un nuevo Quickpass
+                Quickpass quickpass_Nuevo = new Quickpass(filial, codigo, placa, estado);
+
+                // Añadimos el Quickpass a la lista correspondiente
+                listaDestino.agregarQuickpass(quickpass_Nuevo);
             }
             reader.close();
-              
-       
         } catch (IOException e) {
             e.printStackTrace(System.out);
-            
         }
     }
     
-    public void leerArchivos() {
-        try {
-            
-            BufferedReader reader = new BufferedReader(new FileReader(generados));
-            String linea;
-            while ((linea = reader.readLine()) != null) {
-                String[] datos = linea.split("\\|");
-                filial = datos[0];
-                codigo = datos[1];
-                placa = datos[2];
-                pEstado = datos[3];
-                estado = Estado.valueOf(pEstado);
-                
-                filial = valida.valNoVacio(filial);
-                int pcodigo = valida.verificacionNumeroNoVacio(Integer.parseInt(codigo));
-                codigo = ""+pcodigo;
-                int pplaca = valida.verificacionNumeroNoVacio(Integer.parseInt(placa));
-                placa=""+pplaca;
-                
-                Quickpass quickpass_Nuevo = new Quickpass(filial, Integer.parseInt(codigo), Integer.parseInt(placa),estado);  
-            }
-            reader.close();
-              
-       
-        } catch (IOException e) {
-            e.printStackTrace(System.out);
-            
-        }
-    }
 }

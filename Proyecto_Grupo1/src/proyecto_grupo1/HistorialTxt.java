@@ -21,12 +21,11 @@ public class HistorialTxt {
     DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
     String formato = myDateObj.format(myFormatObj);
     private String historial = "Historial.txt";
-    String filial,codigo,placa,estado,accesos;
-    int consulta = 0;
     private String s = "|";
+    
+    
     public void Historial_TXT(String acceso, Quickpass quickpass) {
         try {
-            consulta++; // Contador 3 modulo
             
             
             BufferedWriter writer = new BufferedWriter(new FileWriter(historial, true));
@@ -35,8 +34,7 @@ public class HistorialTxt {
                     quickpass.getPlaca() +s+
                     quickpass.getEstado() +s+
                     formato +s+
-                    acceso +s+  
-                    consulta + "\n");
+                    acceso +s + "\n");
             writer.close();
             JOptionPane.showMessageDialog(null, quickpass+" "+formato+" "+acceso);
         } catch (IOException e) {
@@ -91,6 +89,7 @@ public class HistorialTxt {
         String linea;
         while ((linea = reader.readLine()) != null) {
             String[] datos = linea.split("\\|");
+            System.out.println(datos);
             int codigoTransaccion = Integer.parseInt(datos[1]);
             
             if (codigoTransaccion == codigo) {
@@ -126,8 +125,42 @@ public class HistorialTxt {
     }
     
     public int contadorConsulta(){
-        return consulta;
+        int contador = 0;
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(historial));
+            String linea;
+            while ((linea = reader.readLine()) != null) {
+                contador ++;
+            }
+            reader.close();
+            
+            
+        } catch (IOException e) {
+            e.printStackTrace(System.out);
+        }
+        
+        return contador;
     }
     
+    public int contadorFilial(String opcionValidacion) {
+        int contador = 0;
+        
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(historial));
+            String linea;
+            while ((linea = reader.readLine()) != null) {
+                String[] datos = linea.split("\\|");
+                String filial = datos[0];
+                if (filial.equals(opcionValidacion)) {
+                    contador ++;
+                    
+                }
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return contador;
+    }
     
 }
